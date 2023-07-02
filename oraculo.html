@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>oráculo virtual</title>
+	<link rel="stylesheet" href="oraculo.css">
+  <style>
+    body {
+      background-image:url("img/gradiente2.jpg");
+      background-size: cover;
+      background-position: center;
+      background-repeat: no-repeat;
+    } </style>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Anek+Gujarati:wght@300&family=Roboto:ital,wght@1,100&family=Updock&display=swap" rel="stylesheet">
+	<style>
+   		.frameCabecera {
+ 			float:top;
+      			width:100%;
+      			height: 50%;
+    		}
+
+        .frameRespuesta1 {
+ 			float:left;
+      			width:70%;
+      			height: 50%;
+    		}
+
+        .frameRespuesta2 {
+ 			float:right;
+      			width:70%;
+      			height: 50%;
+    		}
+  	</style>
+  	
+</head>
+
+
+   <script>
+    function enviarRespuesta() {
+      var respuesta = document.getElementById("respuesta").value;
+      mostrarRespuesta();
+    }
+ 		
+        
+ // **************** INTERACCION 1 ****************
+ 
+       function mostrarRespuesta() {
+        var pregunta = document.getElementById("pregunta").value;
+        var grupo = obtenergrupo(pregunta);
+        var grupoImagenes = obtenergrupoImagenes(grupo);
+        var randomIndex = Math.floor(Math.random() * grupoImagenes.length);
+        var respuesta = grupoImagenes[randomIndex];
+        var imagen = document.createElement("img");
+        imagen.src = respuesta;
+        imagen.classList.add("izquierda");
+        imagen.style.width = "50%";
+ 
+       
+        var respuestaImagen = document.getElementById("izquierda");
+               respuestaImagen.innerHTML = ""; 
+        // Limpiar respuesta anterior
+        respuestaImagen.appendChild(imagen);
+
+        // Crear nuevo cuadro de texto
+        setTimeout(function () {
+          var nuevoCuadroTexto = document.createElement("input");
+          nuevoCuadroTexto.type = "text";
+          nuevoCuadroTexto.id = "pregunta2";
+          nuevoCuadroTexto.name = "pregunta2";
+          nuevoCuadroTexto.placeholder = "¿Desea re-preguntar?";
+          nuevoCuadroTexto.classList.add("cuadroPregunta");
+          respuestaImagen.appendChild(nuevoCuadroTexto);
+          nuevoCuadroTexto.focus();
+          nuevoCuadroTexto.addEventListener("keyup", function (event) {
+            if (event.key === "Enter") {
+              mostrarSegundaRespuesta();
+            }
+          });
+        }, 2000); // Retraso de 2 segundos (2000 milisegundos)
+
+      }
+        
+      
+      
+      
+// **************** INTERACCION 2 ****************
+ 
+       function mostrarSegundaRespuesta() {
+        var pregunta2 = document.getElementById("pregunta2").value;
+        var grupo2 = obtenergrupo(pregunta2);
+        var grupoImagenes2 = obtenergrupoImagenes(grupo2);
+        var randomIndex2 = Math.floor(Math.random() * grupoImagenes2.length);
+        var respuesta2 = grupoImagenes2[randomIndex2];
+        var imagen2 = document.createElement("img");
+        imagen2.src = respuesta2;
+        imagen2.classList.add("derecha");
+	      imagen2.style.width = "50%";
+        var respuestaImagen = document.getElementById("derecha");
+        respuestaImagen.innerHTML = ""; // Limpiar respuesta anterior
+        respuestaImagen.appendChild(imagen2);
+      }
+      
+      
+ // ******************************** 
+
+ function obtenergrupo(pregunta) {
+        var numCaracteres = pregunta.length;
+        if (numCaracteres >= 1) {
+        	if (numCaracteres <= 5) {
+          	return "grupoA"; // entre 1 y 5
+        	} 
+          else {
+          return "grupoB"; // mayor a 5 
+          }
+        }
+      }
+        function checkEnter(event) {
+          if (event.key === "Enter") {
+            mostrarRespuesta();
+          }
+        }
+        function obtenergrupo2(pregunta) {
+        var numCaracteres = pregunta.length;
+        if (numCaracteres >= 1) {
+        	if (numCaracteres <= 5) {
+          	return "grupoA"; // entre 1 y 5
+        	} 
+          else {
+          return "grupoB"; // mayor a 5 
+        }
+      }
+      }
+
+        function checkEnter(event) {
+          if (event.key === "Enter") {
+            mostrarRespuesta();
+          }
+        }
+
+    function obtenergrupoImagenes(grupo) {
+        if (grupo === "grupoA") {
+          return [
+            "img/grupoA_img1.jpg",
+            "img/grupoA_img2.jpg",
+            "img/grupoA_img3.jpg",
+            "img/grupoA_img4.jpg",
+            "img/grupoA_img5.jpg",
+            "img/grupoA_img6.jpg",
+            "img/grupoA_img7.jpg",
+            "img/grupoA_img8.jpg",
+            "img/grupoA_img9.jpg",
+            "img/grupoA_img10.jpg",
+          
+          ];
+        } else if (grupo === "grupoB") {
+          return [
+            "img/grupoB_img1.jpg",
+            "img/grupoB_img2.jpg",
+            "img/grupoB_img3.jpg",
+            "img/grupoB_img4.jpg",
+            "img/grupoB_img5.jpg",
+            "img/grupoB_img6.jpg",
+            "img/grupoB_img7.jpg",
+            "img/grupoB_img8.jpg",
+            "img/grupoB_img9.jpg",
+            "img/grupoB_img10.jpg",
+          ];
+        } else if (grupo === "grupoA2") {
+          return [
+    	    "img/grupoA2_img1.jpg",
+          "img/grupoA2_img2.jpg",
+          "img/grupoA2_img3.jpg",
+          "img/grupoA2_img4.jpg",
+          "img/grupoA2_img5.jpg",
+          "img/grupoA2_img6.jpg",
+          "img/grupoA2_img7.jpg",
+          "img/grupoA2_img8.jpg",
+          "img/grupoA2_img9.jpg",
+          "img/grupoA2_img10.jpg"
+
+
+          ];
+        }
+
+        else if (grupo === "grupoB2") {
+          return [
+    	    "img/grupoB2_img1.jpg",
+          "img/grupoB2_img2.jpg",
+          "img/grupoB2_img3.jpg",
+          "img/grupoB2_img4.jpg",
+          "img/grupoB2_img5.jpg",
+          "img/grupoB2_img6.jpg",
+          "img/grupoB2_img7.jpg",
+          "img/grupoB2_img8.jpg",
+          "img/grupoB2_img9.jpg",
+          "img/grupoB2_img10.jpg"
+          ];
+        }
+      }
+        
+        
+</script>
+
+    
+<body>
+	<div id="top" class="contenedor2"> 
+		<label for="pregunta" id= "preguntaLabel" class="robotoBold"> Escriba su consulta ♡ </label>
+		<input type="text" id="pregunta" name="pregunta" onkeyup="checkEnter(event)">
+      		<button onclick="mostrarRespuesta()" class="estiloBoton">Comenzar</button> 
+         </div> 
+         
+	<div id="izquierda" class="frameRespuesta1"></div>
+
+	<div id="derecha" class="frameRespuesta2"></div>
+
+  <div id="izquierda" class="contenedor3"> Cuando obtengas tu respuesta final, capturá la pantalla y compartí el resultado :)
+  </div>
+
+  
+  
+</body>
+</html> 
